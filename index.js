@@ -2,7 +2,7 @@ const express = require('express'),
     dotenv = require('dotenv').config(),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
-    router = require('./router'),
+    mobileRouter = require('./mobile-router'),
     app = express(),
     PORT = process.env.PORT || 3001;
 
@@ -26,7 +26,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use('/mobile', router);
+app.use('/mobile', mobileRouter);
 
 app.listen(PORT, function () {
     console.log("Your node js server is running on PORT:" + PORT);
