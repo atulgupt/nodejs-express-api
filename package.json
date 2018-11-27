@@ -4,6 +4,7 @@
   "description": "node js restfull api with express framework",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon server.js",
     "test": "npm start"
   },
   "repository": {
@@ -11,15 +12,10 @@
     "url": "git+https://github.com/atulgupt/nodejs-express-api.git"
   },
   "keywords": [
-    "nodejs",
-    "restfull",
-    "api",
-    "with",
-    "expressjs",
-    "framework.",
-    "CRUD",
-    "operation",
-    "api"
+    "Express",
+    "RestAPI",
+    "MongoDB",
+    "Mongoose"
   ],
   "author": "Atul Gupta",
   "license": "ISC",
@@ -28,6 +24,11 @@
   },
   "homepage": "https://github.com/atulgupt/nodejs-express-api#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "@types/express": "^4.16.0",
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.13",
+    "nodemon": "^1.18.6"
   }
 }
