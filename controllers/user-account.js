@@ -1,3 +1,4 @@
+const UserAccount = require('../table-schema/user-account-schema');
 class UserAccountController {
 
     constructor() { }
@@ -8,7 +9,14 @@ class UserAccountController {
      * @param {*} res
      */
     registration(req, res) {
+        console.log(req.body);
         res.status(200).json({ message: 'Controller calling...' });
+        // Create a Note
+        const account = new UserAccount({
+            username: 'dsfsdsdf',
+            email: 'asas@sfdsf.dsfd'
+        });
+        account.save()
     }
 
     /**
