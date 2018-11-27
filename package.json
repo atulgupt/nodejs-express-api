@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/atulgupt/nodejs-express-api/issues"
   },
-  "homepage": "https://github.com/atulgupt/nodejs-express-api#readme"
+  "homepage": "https://github.com/atulgupt/nodejs-express-api#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
