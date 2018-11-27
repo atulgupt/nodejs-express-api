@@ -26,6 +26,7 @@ app.use(function (req, res, next) {
     next();
 });
 
+//Extend the router file
 app.use('/mobile', mobileRouter);
 
 app.listen(PORT, function () {

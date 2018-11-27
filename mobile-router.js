@@ -1,7 +1,5 @@
-const router = require('express').Router();
-router.get('/', function (req, res) {
-    console.log('function calling...');
-    res.status(200).json({ message: 'function execute...' });
-});
+let router = require('express').Router(),
+    userAccountController = require('./controllers/user-account');
 
+router.route('/registration').post(userAccountController.registration);
 module.exports = router;
