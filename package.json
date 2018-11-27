@@ -1,0 +1,30 @@
+{
+  "name": "nodejs-express-api",
+  "version": "1.0.0",
+  "description": "node js restfull api with express framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atulgupt/nodejs-express-api.git"
+  },
+  "keywords": [
+    "nodejs",
+    "restfull",
+    "api",
+    "with",
+    "expressjs",
+    "framework.",
+    "CRUD",
+    "operation",
+    "api"
+  ],
+  "author": "Atul Gupta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atulgupt/nodejs-express-api/issues"
+  },
+  "homepage": "https://github.com/atulgupt/nodejs-express-api#readme"
+}
