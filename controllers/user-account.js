@@ -1,4 +1,6 @@
 const hashingAlgo = require('password-hash'),
+    constantMessage = require('../utils/constant.message'),
+    CustomException = require('../exceptions/custom.exception'),
     validator = require('../validator/user-account.validator');
 class UserAccountController {
 
@@ -12,11 +14,16 @@ class UserAccountController {
     async registration(req, res) {
         const { first_name, last_name, username, email, password, phone_number } = req.body;
         console.log(first_name, last_name, username, email, password, phone_number);
-        if (!req.body.first_name || !re.body.email || !req.body.password) {
-            res.status(404).send({ message: 'Something is missing. Please send required filed.' });
-        } else {
+        try {
+            if (!req.body.first_name || !req.body.email || !req.body.password) {
+                throw CustomException.resourceNotFound(res, constantMessage.REQUIRED);
+            } else {
+                console.log("all good");
+            }
+        } catch (error) {
 
         }
+
     }
 
     /**
