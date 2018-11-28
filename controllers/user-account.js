@@ -1,6 +1,7 @@
 const hashingAlgo = require('password-hash'),
     constantMessage = require('../utils/constant.message'),
     CustomException = require('../exceptions/custom.exception'),
+    userService = require('../services/user-account.service'),
     validator = require('../validator/user-account.validator');
 class UserAccountController {
 
@@ -12,16 +13,18 @@ class UserAccountController {
      * @param {*} res
      */
     async registration(req, res) {
-        const { first_name, last_name, username, email, password, phone_number } = req.body;
-        console.log(first_name, last_name, username, email, password, phone_number);
         try {
             if (!req.body.first_name || !req.body.email || !req.body.password) {
                 throw CustomException.resourceNotFound(res, constantMessage.REQUIRED);
             } else {
-                console.log("all good");
+                const result = await userService.createUser(req);
+                if (result) {
+                    res.status(200).send(result);
+                }
+
             }
         } catch (error) {
-
+            console.log(error);
         }
 
     }
