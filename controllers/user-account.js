@@ -1,4 +1,5 @@
-const UserAccount = require('../table-schema/user-account-schema');
+const hashingAlgo = require('password-hash'),
+    validator = require('../validator/user-account.validator');
 class UserAccountController {
 
     constructor() { }
@@ -8,15 +9,14 @@ class UserAccountController {
      * @param {*} req
      * @param {*} res
      */
-    registration(req, res) {
-        console.log(req.body);
-        res.status(200).json({ message: 'Controller calling...' });
-        // Create a Note
-        const account = new UserAccount({
-            username: 'dsfsdsdf',
-            email: 'asas@sfdsf.dsfd'
-        });
-        account.save()
+    async registration(req, res) {
+        const { first_name, last_name, username, email, password, phone_number } = req.body;
+        console.log(first_name, last_name, username, email, password, phone_number);
+        if (!req.body.first_name || !re.body.email || !req.body.password) {
+            res.status(404).send({ message: 'Something is missing. Please send required filed.' });
+        } else {
+
+        }
     }
 
     /**
@@ -24,9 +24,8 @@ class UserAccountController {
      * @param {*} req
      * @param {*} res
      */
-    login(req, res) {
+    async login(req, res) {
 
     }
 }
-let user = new UserAccountController();
-module.exports = user;
+module.exports = new UserAccountController();

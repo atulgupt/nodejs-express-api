@@ -2,10 +2,11 @@ const express = require('express'),
     dotenv = require('dotenv').config(),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
-    mobileRouter = require('./mobile-router'),
+    mobileRouter = require('./routes/mobile-router'),
     app = express(),
     PORT = process.env.PORT || 3001;
 
+mongoose.set('useCreateIndex', true)
 mongoose.connect(process.env.DB_CONN, { useNewUrlParser: true }).then(() => {
     console.log('Your database is connected.');
 }, err => {
