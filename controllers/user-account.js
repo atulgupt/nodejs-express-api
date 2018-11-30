@@ -1,8 +1,8 @@
 const hashingAlgo = require('password-hash'),
     constantMessage = require('../utils/constant.message'),
     CustomException = require('../exceptions/custom.exception'),
-    userService = require('../services/user-account.service'),
-    validator = require('../validator/user-account.validator');
+    UserAccountService = require('../services/user-account.service'),
+    userService = new UserAccountService();
 class UserAccountController {
 
     constructor() { }
@@ -21,10 +21,9 @@ class UserAccountController {
                 if (result) {
                     res.status(200).send(result);
                 }
-
             }
         } catch (error) {
-            console.log(error);
+            console.log(error, '<------');
         }
 
     }

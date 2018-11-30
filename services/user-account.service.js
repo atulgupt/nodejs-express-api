@@ -1,4 +1,8 @@
-const commonDao = require('../dao/common.dao');
+
+const UserDao = require("../dao/user.dao"),
+    passwordHash = require("password-hash"),
+    constants = require("../utils/constant.message"),
+    _ = require("lodash");
 
 class UserAccountService {
 
@@ -8,9 +12,13 @@ class UserAccountService {
      */
     async createUser(req) {
         const { first_name, last_name, username, email, password, phone_number } = req.body;
-        const result = await commonDao.saveRecord({ first_name, last_name, username, email, password, phone_number });
-        console.log(result, '---');
+        const result = await UserDao.createUser({ first_name, last_name, username, email, password, phone_number });
         return result;
     }
+
+    async getUserByEmail(req) {
+        // const { email } = req.body;
+        // const result = await UserDao.createUser({ email: email }, SchemaName);
+    }
 }
-module.exports = new UserAccountService();
+module.exports = UserAccountService;
