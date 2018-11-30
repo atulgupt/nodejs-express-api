@@ -8,24 +8,26 @@ class UserAccountController {
     constructor() { }
 
     /**
-     * @description To registered the new user
-     * @param {*} req
-     * @param {*} res
+     * @description For creating the new user
+     * @param {Object} req
+     * @param {Object} res
      */
     async registration(req, res) {
         try {
             if (!req.body.first_name || !req.body.email || !req.body.password) {
                 throw CustomException.resourceNotFound(res, constantMessage.REQUIRED);
             } else {
-                const result = await userService.createUser(req);
-                if (result) {
-                    res.status(200).send(result);
+                const user = await userService.getUserDoc({ email: req.body.email });
+                if (!user) {
+                    const result = await userService.createUser(req);
+                    if (result) {
+                        res.status(200).send(result);
+                    }
+                } else {
+                    throw CustomException.resourceAlreadyExists(res, constantMessage.ACCOUNT_EXIST);
                 }
             }
-        } catch (error) {
-            console.log(error, '<------');
-        }
-
+        } catch (error) { }
     }
 
     /**

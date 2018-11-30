@@ -7,8 +7,8 @@ const UserDao = require("../dao/user.dao"),
 class UserAccountService {
 
     /**
-     *
-     * @param {*} req
+     * @description calling the dao method for registering the new user
+     * @param {Object} req
      */
     async createUser(req) {
         const { first_name, last_name, username, email, password, phone_number } = req.body;
@@ -16,9 +16,13 @@ class UserAccountService {
         return result;
     }
 
-    async getUserByEmail(req) {
-        // const { email } = req.body;
-        // const result = await UserDao.createUser({ email: email }, SchemaName);
+    /**
+     * @description For getting the user data on the basis of query
+     * @param {Object} query
+     */
+    async getUserDoc(query) {
+        const result = await UserDao.getUser(query);
+        return result;
     }
 }
 module.exports = UserAccountService;

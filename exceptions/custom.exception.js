@@ -23,7 +23,7 @@ class CustomException {
     }
 
     async resourceAlreadyExists(response, errMsg) {
-        return getException(409, constants.MESSAGES.intrnlSrvrErr, err);
+        return new ThrownException(409, response, errMsg);
     }
 }
 
