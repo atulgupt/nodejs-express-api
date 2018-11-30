@@ -11,6 +11,7 @@ class UserAccountService {
      * @param {Object} req
      */
     async createUser(req) {
+        req.body.password = passwordHash.generate(req.body.password);
         const { first_name, last_name, username, email, password, phone_number } = req.body;
         const result = await UserDao.createUser({ first_name, last_name, username, email, password, phone_number });
         return result;
