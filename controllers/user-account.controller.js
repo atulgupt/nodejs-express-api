@@ -12,7 +12,7 @@ class UserAccountController {
      * @param {Object} req
      * @param {Object} res
      */
-    async registration(req, res) {
+    async addNewAccount(req, res) {
         try {
             if (!req.body.first_name || !req.body.email || !req.body.password) {
                 throw CustomException.resourceNotFound(res, constantMessage.REQUIRED);

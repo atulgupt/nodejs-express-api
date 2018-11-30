@@ -1,5 +1,5 @@
 let router = require('express').Router(),
     userAccountController = require('../controllers/user-account.controller');
 
-router.route('/registration').post(userAccountController.registration);
+router.route('/addNewAccount').post(userAccountController.addNewAccount);
 module.exports = router;
