@@ -2,6 +2,7 @@ const hashingAlgo = require('password-hash'),
     constantMessage = require('../utils/constant.message'),
     CustomException = require('../exceptions/custom.exception'),
     UserAccountService = require('../services/user-account.service'),
+    mongoose = require('mongoose'),
     userService = new UserAccountService();
 class UserAccountController {
 
@@ -18,6 +19,7 @@ class UserAccountController {
                 throw await CustomException.resourceNotFound(constantMessage.REQUIRED);
             } else {
                 const user = await userService.getUserDoc({ email: req.body.email });
+                console.log(user, '<--- user');
                 if (!user) {
                     const result = await userService.createUser(req);
                     if (result) {
@@ -26,8 +28,10 @@ class UserAccountController {
                 } else {
                     throw await CustomException.resourceAlreadyExists(constantMessage.ACCOUNT_EXIST);
                 }
+
             }
         } catch (error) {
+            console.log(error, '<-----');
             res.status(error.status).json(error);
         }
     }

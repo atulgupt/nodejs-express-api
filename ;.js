@@ -4,6 +4,7 @@ const express = require('express'),
     mongoose = require('mongoose'),
     mobileRouter = require('./routes/mobile-router'),
     CommonUtil = require("./utils/common.utils"),
+    ConstantMessage = require("./utils/constant.message"),
     app = express(),
     PORT = process.env.PORT || 3001;
 
@@ -24,14 +25,14 @@ app.use(bodyParser.json({ limit: "5mb" }));
 //Application-level middleware
 app.use(function (req, res, next) {
     console.log(new Date(), req.method, req.url);
+    if (!CommonUtil.isDBReadyState()) {
+        return res.status(500).json({ message: ConstantMessage.DB_DISCONNECT });
+    }
     res.setHeader('Content-Type', 'application/json');
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT');
     res.header('Access-Control-Allow-Headers', 'Content-Type, X-API-KEY');
     res.header('Content-Type', 'application/json; charset=utf-8');
-    if (!CommonUtil.isDBReadyState()) {
-
-    }
     next();
 });
 

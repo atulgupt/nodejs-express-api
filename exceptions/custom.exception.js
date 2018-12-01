@@ -15,15 +15,15 @@ class CustomException {
 
 
     async authenticationError(errMsg) {
-        return getException(401, constants.MESSAGES.intrnlSrvrErr, err);
+        return await new ThrownException(401, errMsg);
     }
 
     async badRequest(errMsg) {
-        return getException(400, constants.MESSAGES.intrnlSrvrErr, err);
+        return await new ThrownException(400, errMsg);
     }
 
     async resourceAlreadyExists(errMsg) {
-        return new ThrownException(409, errMsg);
+        return await new ThrownException(409, errMsg);
     }
 }
 
