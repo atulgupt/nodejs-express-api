@@ -15,7 +15,7 @@ class UserAccountController {
     async addNewAccount(req, res) {
         try {
             if (!req.body.first_name || !req.body.email || !req.body.password) {
-                throw CustomException.resourceNotFound(res, constantMessage.REQUIRED);
+                throw await CustomException.resourceNotFound(constantMessage.REQUIRED);
             } else {
                 const user = await userService.getUserDoc({ email: req.body.email });
                 if (!user) {
@@ -24,10 +24,12 @@ class UserAccountController {
                         res.status(200).send(result);
                     }
                 } else {
-                    throw CustomException.resourceAlreadyExists(res, constantMessage.ACCOUNT_EXIST);
+                    throw await CustomException.resourceAlreadyExists(constantMessage.ACCOUNT_EXIST);
                 }
             }
-        } catch (error) { }
+        } catch (error) {
+            res.status(error.status).json(error);
+        }
     }
 
     /**

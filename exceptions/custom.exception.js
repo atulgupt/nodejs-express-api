@@ -5,25 +5,25 @@ class CustomException {
 
     constructor() { }
 
-    async resourceNotFound(response, errMsg) {
-        return await new ThrownException(404, response, errMsg);
+    async resourceNotFound(errMsg) {
+        return await new ThrownException(404, errMsg);
     }
 
-    async internalServerError(response, errMsg) {
-        return await new ThrownException(500, response, errMsg);
+    async internalServerError(errMsg) {
+        return await new ThrownException(500, errMsg);
     }
 
 
-    async authenticationError(response, errMsg) {
+    async authenticationError(errMsg) {
         return getException(401, constants.MESSAGES.intrnlSrvrErr, err);
     }
 
-    async badRequest(response, errMsg) {
+    async badRequest(errMsg) {
         return getException(400, constants.MESSAGES.intrnlSrvrErr, err);
     }
 
-    async resourceAlreadyExists(response, errMsg) {
-        return new ThrownException(409, response, errMsg);
+    async resourceAlreadyExists(errMsg) {
+        return new ThrownException(409, errMsg);
     }
 }
 
