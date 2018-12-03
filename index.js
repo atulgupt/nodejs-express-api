@@ -1,9 +1,9 @@
 const express = require('express'),
+    dotenv = require('dotenv').config(),
     bodyParser = require('body-parser'),
     config = require("./config/index.config"),
     cors = require('cors'),
     morgan = require('morgan');
-
 /**
  * @description database configuration and connection
  */

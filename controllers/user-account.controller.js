@@ -1,4 +1,4 @@
-const hashingAlgo = require('password-hash'),
+const passwordHash = require('password-hash'),
     constantMessage = require('../utils/constant.message'),
     CustomException = require('../exceptions/custom.exception'),
     UserAccountService = require('../services/user-account.service'),
@@ -41,8 +41,24 @@ class UserAccountController {
      * @param {*} req
      * @param {*} res
      */
-    async login(req, res) {
-
+    async loginAccount(req, res) {
+        try {
+            const { email, password } = req.body;
+            if (!email || !password) {
+                throw await CustomException.resourceNotFound(constantMessage.REQUIRED);
+            } else {
+                const user = await userService.getUserDoc({ email: email });
+                console.log(user, '<--- user');
+                if (user && passwordHash.verify(password, user.password)) {
+                    res.status(200).send(user);
+                } else {
+                    throw await CustomException.resourceNotFound(constantMessage.INVALID_CREDENTIALS);
+                }
+            }
+        } catch (error) {
+            console.log(error, '<-----');
+            res.status(error.status).json(error);
+        }
     }
 }
 module.exports = new UserAccountController();
