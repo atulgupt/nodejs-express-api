@@ -1,4 +1,3 @@
-
 const UserDao = require("../dao/user.dao"),
     passwordHash = require("password-hash"),
     constants = require("../utils/constant.message"),
@@ -24,6 +23,15 @@ class UserAccountService {
     async getUserDoc(query) {
         const result = await UserDao.getUser(query);
         return result;
+    }
+
+    /**
+     * @description
+     * @param {*} req
+     */
+    async updateprofile(req) {
+        const { address, city, pincode } = req.body;
+        const result = await UserDao.updateProfile({ address, city, pincode });
     }
 }
 module.exports = UserAccountService;

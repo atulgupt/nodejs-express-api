@@ -23,6 +23,15 @@ class UserAccountDAO {
         const result = await UserDao.findOne(query);
         return result
     }
+
+    /**
+     * @description
+     * @param {*} query
+     */
+    async updateProfile(query) {
+        const result = await UserDao.findOneAndUpdate(query);
+        return result;
+    }
 }
 
 module.exports = new UserAccountDAO();
